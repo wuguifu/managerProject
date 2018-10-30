@@ -190,7 +190,7 @@
                         <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>
                     </a>
                     <ul id="customInfoSetting" class="nav nav-list secondmenu collapse" style="height: 0px;">
-                        <li><a href="/view/customInfoCfgView"><i class="glyphicon glyphicon-user"></i>&nbsp;客户信息</a></li>
+                        <li><a href="/view/customInfoCfgView" target="iframe_content"><i class="glyphicon glyphicon-user"></i>&nbsp;客户信息</a></li>
                     </ul>
                 </li>
                 <li>
@@ -201,8 +201,8 @@
                         <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>
                     </a>
                     <ul id="systemSetting" class="nav nav-list secondmenu collapse" style="height: 0px;">
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;用户管理</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>&nbsp;菜单管理</a></li>
+                        <li><a href="/view/customInfoCfgView" target="iframe_content"><i class="glyphicon glyphicon-user"></i>&nbsp;用户管理</a></li>
+                        <li><a href="/view/login" target="iframe_content"><i class="glyphicon glyphicon-th-list"></i>&nbsp;菜单管理</a></li>
                         <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>&nbsp;角色管理</a></li>
                         <li><a href="#"><i class="glyphicon glyphicon-edit"></i>&nbsp;修改密码</a></li>
                         <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;日志查看</a></li>
