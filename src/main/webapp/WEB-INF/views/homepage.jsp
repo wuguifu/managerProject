@@ -255,7 +255,6 @@
             </ul>
         </div>
         <div class="col-md-10">
-            这里是内容
             <iframe id="iframe_content" src="" frameborder="0"  name="iframe_content" scrolling = "no" style="width: 100%; min-height: 1043px"></iframe>
         </div>
     </div>

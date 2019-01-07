@@ -1,40 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <html>
 <head>
 
-	<link href="/common-homepage/bootstrap.css" rel="stylesheet">
-	<link href="/common/common/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/common/bootstrap-select.css" rel="stylesheet" />
-<link href="/css/common/bootstrap-table.css" rel="stylesheet" />
+    <link href="/common-homepage/bootstrap.css" rel="stylesheet">
+    <link href="/common/common/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/css/common/bootstrap-select.css" rel="stylesheet"/>
+    <link href="/css/common/bootstrap-table.css" rel="stylesheet"/>
 
-	<script src="/common/jquery-2.0.3.min.js"></script>
-	<script src="/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
-	<script src="/js/common/bootstrap-table.js"></script>
-	<script type="text/javascript" src="/common/jquery-ui.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style type="text/css">
-	input{
-		
-	}
-</style>
-<title>版本显示页面</title>
+    <script src="/common/jquery-2.0.3.min.js"></script>
+    <script src="/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <script src="/js/common/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/common/jquery-ui.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+        .theme_0 {
+            color: white;
+            font-family: 黑体;
+            font-size: 20px;
+            text-align: left;
+            width: 100%;
+            height: 30px;
+            background: #737373;
+        }
+    </style>
+    <title>版本显示页面</title>
 </head>
 <body>
-	<div>
-		<table id="ArbetTable"></table>
-	</div>
+<div>
+    <div id="assignTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="content">
+            <div class="theme_0" style="text-align: center;">
+                <div style="height: 2px;"></div>
+                <div colspan=2 align=center>
+                    <div>&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;据&nbsp;&nbsp;表&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;表</div>
+                </div>
+            </div>
+            <div style="height: 18px;"></div>
+            <div align=center>
+                <button class="btn btn-success" id="btnAdd" data-toggle="modal"
+                        data-target="#modal-group-add" class="btn btn-default">新增表
+                </button>
+            </div>
+            <div style="height: 20px;"></div>
+            <!-- 查询框 -->
+            <div id="search_main">
+                <form action="" id="searchForm">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label>数据库</label> <input class="form-control" name="dbName"
+                                                                      placeholder="输入数据库查询..." id="dbName"
+                                                                      onkeypress="enterSearch(event);"/>
+                            <label>区域</label> <input class="form-control" name="area"
+                                                                     placeholder="输入区域查询..." id="area"
+                                                                     onkeypress="enterSearch(event);"/>
+                            <label>表名</label> <input class="form-control" name="tableName"
+                                                                     placeholder="输入表名查询..." id="tableName"
+                                                                     onkeypress="enterSearch(event);"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div style="width: 98%">
+                <table id="table-js"></table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
     $(function () {
-             var oTable = new TableInit();
-             oTable.Init();
-         });
+        var oTable = new TableInit();
+        oTable.Init();
+    });
     var TableInit = function () {
         var oTableInit = new Object();
         //初始化Table
         oTableInit.Init = function () {
-            $('#ArbetTable').bootstrapTable({
+            $('#table-js').bootstrapTable({
                 url: '/Interface/GetData',         //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -85,18 +129,23 @@
                     } else {//奇数行
                         strclass = classesArr[1];
                     }
-                    return { classes: strclass };
+                    return {classes: strclass};
                 },//隔行变色
             });
+            init();
 
         };
+        function init() {
+            $("div.search").empty();
+            $("div.search").append($("#search_main"));
+        }
 
 
         //得到查询的参数
         oTableInit.queryParams = function (params) {
             var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 limit: params.limit,   //页面大小
-                offset:params.offset
+                offset: params.offset
             };
             return temp;
         };
